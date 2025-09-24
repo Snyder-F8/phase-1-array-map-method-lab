@@ -12,5 +12,17 @@ const tutorials = [
 ];
 
 const titleCased = () => {
-  return tutorials
-}
+  return tutorials.map(tutorial => {
+    return tutorial
+      .split(" ")
+      .map(word => {
+        // Preserve acronyms or special words like NaN
+        if (word.toUpperCase() === word || word === "NaN") {
+          return word;
+        }
+        // Capitalize first letter, but keep the rest of the original word as-is
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      })
+      .join(" ");
+  });
+};
